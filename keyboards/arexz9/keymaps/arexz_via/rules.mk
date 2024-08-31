@@ -6,7 +6,7 @@
 ##General Keyboard Setup
 VIA_ENABLE = yes
 LTO_ENABLE = yes
-WPM_ENABLE = no
+WPM_ENABLE = yes
 RGBLIGHT_ENABLE = no
 
 ##DIP Switch Setup (2 state switch)
