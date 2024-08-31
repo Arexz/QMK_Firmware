@@ -10,7 +10,7 @@ WPM_ENABLE = yes
 RGBLIGHT_ENABLE = no
 
 ##DIP Switch Setup (2 state switch)
-DIP_SWITCH_ENABLE = yes
+DIP_SWITCH_ENABLE = no
 #DIP_SWITCH_MAP_ENABLE = yes
 
 ##I2C Setup

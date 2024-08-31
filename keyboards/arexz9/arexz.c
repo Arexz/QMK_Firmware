@@ -16,6 +16,7 @@
 
 #include <quantum.h>
 
+
 //---------------------------------------------//
 //DIP Switch "awaiting Firmware" on OLED Screen//
 //---------------------------------------------//
@@ -27,7 +28,7 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     }
 
     if (index == 0) {
-
+        oled_write_ln_P("awaiting Firmware", false);
         reset_keyboard();
     }
 

@@ -14,12 +14,17 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- #include QMK_KEYBOARD_H
+#pragma once
+
+#include <progmem.h>
+#include <oled_driver.h>
+#include QMK_KEYBOARD_H
+
 
 //----------------------//
 //Images for OLED Screen//
 //----------------------//
-bool oled_task_user() {
+void image() {
 
 const char unmuted PROGMEM[] = {
     // 'unmuted', 128x32px
@@ -164,6 +169,8 @@ const char bando PROGMEM[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-return false;
-
+    oled_write_raw(unmuted, sizeof(unmuted));
+    oled_write_raw(muted, sizeof(unmuted));
+    oled_write_raw(mutedef, sizeof(unmuted));
+    oled_write_raw(bando, sizeof(unmuted));
 }
