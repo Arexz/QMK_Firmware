@@ -15,13 +15,13 @@
         "command": false,
         "console": false,
         "extrakey": true,
-        "mousekey": false
+        "mousekey": true
 
     },
 
     "matrix_pins": {
         "cols": ["GP4", "GP2", "GP1"],
-        "rows": ["GP27", "GP6", "GP26"]
+        "rows": ["GP27", "GP6", "GP26"],
     },
 
     "usb": {

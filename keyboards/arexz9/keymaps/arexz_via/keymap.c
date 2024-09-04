@@ -17,6 +17,7 @@
 #include <progmem.h>
 #include <oled_driver.h>
 #include <led.h>
+#include <stdlib.h>
 #include QMK_KEYBOARD_H
 //#include <oled_bitmaps.c>
 
@@ -43,6 +44,8 @@ const uint16_t PROGMEM keymaps[] [MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+
+
 #ifdef OLED_ENABLE
 // bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //     switch (keycode) {
@@ -56,8 +59,14 @@ const uint16_t PROGMEM keymaps[] [MATRIX_ROWS][MATRIX_COLS] = {
 // return true;
 // }
 
+static bool scrolling;
 
-
+void stop_scrolling(void) {
+    if (scrolling) {
+        oled_scroll_off();
+        scrolling = false;
+    }
+}
 
 bool oled_task_user() {
 
@@ -131,18 +140,33 @@ bool oled_task_user() {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
  };
 
+
+
     // Caps lock status
     led_t led_state = host_keyboard_led_state();
 
     switch (led_state.caps_lock) {
         case 0:
+            oled_scroll_left();
             oled_write_raw_P(jigglypuff, sizeof(jigglypuff));
+            oled_scroll_set_speed(rand() % (7 + 1 - 0) + 0);
         break;
+        default: stop_scrolling();
 
         case 1:
+            oled_scroll_right();
             oled_write_raw_P(jigglypuff_mirror, sizeof(jigglypuff_mirror));
+            oled_scroll_set_speed(rand() % (7 + 1 - 0) + 0);
+            stop_scrolling();
         break;
+        default: stop_scrolling();
+
     }
+
+        // Cannot reactivate scrolling here, because oled_scroll_off()
+        // marks the whole display as dirty, and oled_scroll_left()
+        // silently does nothing if either the display is dirty or
+        // scrolling is already active.
 
   return false;
 
@@ -163,10 +187,3 @@ bool oled_task_user() {
 
 //     return true;
 // }
-
-
-//-----------------//
-// CapsLock to OLED//
-//-----------------//
-// Caps lock status
-// led_t led_state = host_keyboard_led_state(); //FIX

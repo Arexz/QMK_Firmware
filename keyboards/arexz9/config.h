@@ -17,12 +17,10 @@
 /* disable print */
 //#define NO_PRINT
 
+//#define USE_SERIAL
+
 //DIP Switch for Reset/Bootloader
 #define DIP_SWITCH_PINS { GP11 }
-
-//#define LED_H "quantum\led.h"
-
-
 
 //disable action features
 //#define NO_ACTION_LAYER
@@ -40,4 +38,6 @@
 //OLED Configuration
 #define OLED_BITMAPS_C "keymaps\via\oled_bitmaps.c"
 #define OLED_DISPLAY_ADDRESS 0x3C
-#define OLED_TIMEOUT 0
+#define OLED_TIMEOUT 0 //in ms, 0 to turn off
+#define OLED_BRIGHTNESS 128 //0-256
+#define OLED_SCROLL_TIMEOUT 0 //in ms, 0 to turn off

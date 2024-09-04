@@ -8,6 +8,7 @@ VIA_ENABLE = yes
 LTO_ENABLE = yes
 WPM_ENABLE = yes
 RGBLIGHT_ENABLE = no
+SLEEP_LED_ENABLE = no
 
 ##DIP Switch Setup (2 state switch)
 DIP_SWITCH_ENABLE = no
